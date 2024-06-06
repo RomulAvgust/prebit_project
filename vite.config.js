@@ -1,6 +1,17 @@
+import { defineConfig } from "vite";
+import { resolve } from "path";
 
-import Inspect from "vite-plugin-inspect";
-
-export default {
-  plugins: [Inspect()],http://localhost:5173/__inspect/
-};
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, "index.html"),
+      },
+      output: {
+        entryFileNames: "assets/js/wrapper.js",
+        chunkFileNames: "assets/js/[name].js",
+        assetFileNames: "assets/[ext]/[name].[ext]",
+      },
+    },
+  },
+});
